@@ -1,6 +1,5 @@
 name: node js ci/cd test
 
-#events
 on: 
   push:
     branches: [ main ]
@@ -28,17 +27,16 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3
+
       - name: Log into Docker Hub
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
-      - name: docker build and push
-        uses: docker/build-push-action@v2
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
         with:
           context: .
           push: true
-          tags: mattianumeroso/cicd-node-test
-
-    
+          tags: mattianumeroso/cicd-node-test:latest
