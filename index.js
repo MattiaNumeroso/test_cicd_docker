@@ -10,6 +10,10 @@ app.get('/client', (req, res) => {
     res.send('Hello client!');
 });
 
+app.get('/ciao', (req, res) => {
+    res.send('Ciao!');
+});
+
 const server = app.listen(port, () => {
     console.log(`server are listening at http://localhost:${port} port: ${port}`);
 });
